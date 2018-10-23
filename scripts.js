@@ -10,16 +10,16 @@ for (let i = 0; i < scores.length; i++) {
   */
 
   switch(true) {
-    case scores[i]>=90:
+    case scores[i] > 90:
       grades.A = (grades.A || 0) + 1;
       break;
-    case scores[i]>=80:
+    case scores[i] > 80:
       grades.B = (grades.B || 0) + 1;
       break;
-    case scores[i]>=75:
+    case scores[i] > 70:
       grades.C = (grades.C || 0) + 1;
       break;
-    case scores[i]>=70:
+    case scores[i] > 60:
       grades.D = (grades.D || 0) + 1;
       break;
     default:
@@ -47,15 +47,17 @@ console.info("Lowest Score:", lowestScore);
 let highestScore = scores.sort((a, b) => b - a)[0];
 console.info("Highest Score:", highestScore);
 
-/* Find the most common grade and output */
+/* Find the most common grade(s) and output */
 
 let highestGradeCount = 0;
-let highestGrade;
+let highestGrade = [];
 
 for (grade in grades) {
   if(grades[grade] > highestGradeCount) {
     highestGradeCount = grades[grade];
-    highestGrade = grade;
+    highestGrade = [grade];
+  } else if (grades[grade] === highestGradeCount) {
+    highestGrade.push(grade);
   }
 }
 
@@ -64,12 +66,14 @@ console.log("Most Common Grade:", highestGrade);
 /* Find the least common grade and output */
 
 let lowestGradeCount = 100;
-let lowestGrade;
+let lowestGrade = [];
 
 for (grade in grades) {
   if(grades[grade] < lowestGradeCount) {
     lowestGradeCount = grades[grade];
-    lowestGrade = grade;
+    lowestGrade = [grade];
+  } else if (grades[grade] === lowestGradeCount) {
+    lowestGrade.push(grade);
   }
 }
 
